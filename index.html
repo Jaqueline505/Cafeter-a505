@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cafetería Snoopy</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2efe9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-card {
+            background-color: #e6e8e3;
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #2d5a3f;
+        }
+
+        .header-titles h1 {
+            font-size: 18px;
+            margin: 0;
+            color: #1b3824;
+        }
+
+        .header-titles p {
+            font-size: 12px;
+            margin: 2px 0 0 0;
+            color: #666;
+        }
+
+        .close-btn {
+            background-color: #4a4f52;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navbar {
+            background-color: #5c3a21;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .nav-links-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-social-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            color: white;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .navbar a:hover {
+            color: #d1b194;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #2d5a3f;
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 6px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            scroll-margin-top: 80px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #dcdcdc;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .text-right {
+            text-align: right;
+            width: 100px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #2d5a3f;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #234631;
+        }
+
+        .delete-btn {
+            background-color: #a83232;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #812525;
+        }
+
+        .social-section {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px solid #dcdcdc;
+            padding-top: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-btn {
+            background-color: #5c3a21;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .social-btn:hover {
+            background-color: #432a18;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ENCABEZADO -->
+    <div class="header-card">
+        <div class="header-left">
+            <img src="cafeteria-snoopy.jpg" alt="Cafetería Snoopy Logo" class="logo">
+            <div class="header-titles">
+                <h1>Cafetería Snoopy</h1>
+                <p>Alimentos y bebidas</p>
+            </div>
+        </div>
+        <button class="close-btn" type="button" onclick="this.closest('.header-card').style.display='none'">
+            ×
+        </button>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <div class="navbar">
+        <div class="nav-links-group">
+            <a href="#menu">Menú</a>
+            <a href="#especialidades">Especialidades</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#redes-sociales">Redes Sociales</a>
+        </div>
+        <div class="nav-social-group">
+            <i class="fa-brands fa-facebook fa-lg"></i>
+            <i class="fa-brands fa-instagram fa-lg"></i>
+            <i class="fa-brands fa-tiktok fa-lg"></i>
+            <i class="fa-brands fa-whatsapp fa-lg"></i>
+        </div>
+    </div>
+
+    <!-- SECCIÓN MENÚ -->
+    <h2 id="menu">Menú</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th class="text-right">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Hamburguesa</td><td class="text-right">$45</td></tr>
+            <tr><td>Jugo</td><td class="text-right">$20</td></tr>
+            <tr><td>Sándwich</td><td class="text-right">$30</td></tr>
+            <tr><td>Café</td><td class="text-right">$30</td></tr>
+            <tr><td>Frappé</td><td class="text-right">$40</td></tr>
+            <tr><td>Donas</td><td class="text-right">$35</td></tr>
+            <tr><td>Matcha</td><td class="text-right">$45</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ESPECIALIDADES DEL DÍA -->
+    <h2 id="especialidades">Especialidades del Día</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Especialidad</th>
+                <th>Descripción</th>
+                <th class="text-right">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Combo Snoopy</td><td>Hamburguesa + Papas + Jugo</td><td class="text-right">$65</td></tr>
+            <tr><td>Waffles de la Casa</td><td>Waffles con frutas y jarabe</td><td class="text-right">$45</td></tr>
+            <tr><td>Frappé Especial</td><td>Café helado con crema batida + Dona</td><td class="text-right">$50</td></tr>
+        </tbody>
+    </table>
+
+    <!-- SECCIÓN CONTACTO -->
+    <h2 id="contacto">Contacto</h2>
+
+    <!-- FORMULARIO DE CONTACTO -->
+    <form id="formulario" action="procesar.php" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" placeholder="Escribe tu correo" required>
+        </div>
+        <div class="form-group">
+            <label for="mensajeTexto">Mensaje:</label>
+            <textarea id="mensajeTexto" name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+        </div>
+        <button type="submit" name="guardar" class="submit-btn">Enviar</button>
+    </form>
+
+    <!-- FORMULARIO PARA ELIMINAR REGISTROS -->
+    <section>
+        <h2>Eliminar Registro</h2>
+        <form action="procesar.php" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este registro?')">
+            <div class="form-group">
+                <label for="correoEliminar">Correo electrónico:</label>
+                <input type="email" id="correoEliminar" name="correoEliminar" placeholder="Escribe el correo" required>
+            </div>
+            <button type="submit" name="eliminar" class="delete-btn">Eliminar</button>
+        </form>
+    </section>
+
+    <!-- REDES SOCIALES -->
+    <div class="social-section" id="redes-sociales">
+        <h2>Síguenos en Redes Sociales</h2>
+        <div class="social-links">
+            <a href="https://www.facebook.com/61578263616949/" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/casasnoopy" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.tiktok.com/search?q=Casa%20Snoopy%20Cafeteria" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=525593685781&text=Hola,%20me%20gustaría%20pedir%20informes" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT PARA VALIDAR EL FORMULARIO -->
+<script>
+document.getElementById("formulario").addEventListener("submit", function(event) {
+    let nombre = document.getElementById("nombre").value.trim();
+    let correo = document.getElementById("correo").value.trim();
+    let mensaje = document.getElementById("mensajeTexto").value.trim();
+
+    if (nombre === "" || correo === "" || mensaje === "") {
+        event.preventDefault();
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+});
+</script>
+
+</body>
+</html>
